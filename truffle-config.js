@@ -116,8 +116,7 @@ module.exports = {
           providerOrUrl: `https://mainnet.infura.io/v3/${apiKey}`,
         }),
       network_id: 1,
-      gas: 8000000, // Increase the gas limit
-      gasPrice: 100000000000, // 100 Gwei
+      gasPrice: 40000000000, // 40 Gwei
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
