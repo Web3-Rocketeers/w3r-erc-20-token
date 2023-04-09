@@ -42,9 +42,10 @@
  */
 
 require('dotenv').config();
-const { MNEMONIC, PROJECT_ID } = process.env;
-
 const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+const mnemonic = process.env.MNEMONIC;
+const apiKey = process.env.INFURA_API_KEY;
 
 module.exports = {
   /**
@@ -102,6 +103,20 @@ module.exports = {
         providerOrUrl: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`
       }),
       network_id: 11155111,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+    },
+    mainnet: {
+      provider: () =>
+        new HDWalletProvider({
+          mnemonic: {
+            phrase: mnemonic,
+          },
+          providerOrUrl: `https://mainnet.infura.io/v3/${apiKey}`,
+        }),
+      network_id: 1,
+      gasPrice: 100000000000, // 100 Gwei
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
